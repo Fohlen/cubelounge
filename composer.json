@@ -1,0 +1,16 @@
+{
+    "name": "fohlen/cubelounge",
+    "description": "A community site for cube-engine based games.",
+    "require": {
+        "masterminds/html5": "~2.1",
+        "fguillot/picofeed": "0.1.*",
+        "killme/sauerbraten-query": "dev-master"
+    },
+    "license": "GPL v3.0+",
+    "authors": [
+        {
+            "name": "Fohlen",
+            "email": "fohlen@darkkeepers.dk"
+        }
+    ]
+}
