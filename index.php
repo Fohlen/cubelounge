@@ -3,6 +3,9 @@
 // Kickstart the framework
 $f3=require('lib/base.php');
 
+// Fire up composer
+require_once('vendor/autoload.php');
+
 if ((float)PCRE_VERSION<7.9)
 	trigger_error('PCRE version is out of date');
 
@@ -64,11 +67,22 @@ $f3->route('GET /',
 				array('json','simplexml'),
 			'Web\Pingback'=>
 				array('dom','xmlrpc')
-		);
-		$f3->set('classes',$classes);*/
+		);*/
+		//$f3->set('classes',$classes);
 		$f3->set('content','welcome.htm');
 		echo View::instance()->render('layout.htm');
 	}
+);
+
+$f3->route('GET /commands',
+		function($f3) {
+			foreach (new DirectoryIterator('app/commands') as $Command) {
+				if($Command->isDot()) continue;
+				$commandName = "Commands\\" . $Command->getBasename('.php');
+				$task = new $commandName;
+				$task->run();
+			}
+		}
 );
 
 $f3->run();
