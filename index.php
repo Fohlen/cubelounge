@@ -31,12 +31,10 @@ $f3->set('ONERROR',
 		}
 );
 
-$f3->route('GET /',
-	function($f3) {
-		$f3->set('content','welcome.htm');
-		echo View::instance()->render('layout.htm');
-	}
-);
+
+$f3->route('GET /', 'Controllers\News->index');
+$f3->route('GET /@controller', 'Controllers\@controller->index');
+$f3->route('GET /@controller/@action', 'Controllers\@controller->@action');
 
 $f3->route('GET /command',
 		function($f3) {			

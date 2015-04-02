@@ -12,6 +12,7 @@ class Feeds
 	private $_reader;
 	
 	public function __construct() {
+		// We need a base object for the database mapper
 		$f3 = \Base::instance();
 		
 		// Table objects
