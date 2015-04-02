@@ -39,7 +39,7 @@ $f3->route('GET /',
 );
 
 $f3->route('GET /command',
-		function($f3) {
+		function($f3) {			
 			if (php_sapi_name() == 'cli') 
 			{
 				foreach (new DirectoryIterator('app/commands') as $Command) {
