@@ -32,6 +32,7 @@ $f3->set('ONERROR',
 );
 
 
+// Routing scheme. Set the news page as our index and route all requests to their corresponding controllers
 $f3->route('GET /', 'Controllers\News->index');
 $f3->route('GET /@controller', 'Controllers\@controller->index');
 $f3->route('GET /@controller/@action', 'Controllers\@controller->@action');

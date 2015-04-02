@@ -12,12 +12,9 @@ class Feeds
 	private $_reader;
 	
 	public function __construct() {
-		// We need a base object for the database mapper
-		$f3 = \Base::instance();
-		
 		// Table objects
-		$this->_feed = new \DB\SQL\Mapper($f3->get('DB'),'feeds');
-		$this->_item = new \DB\SQL\Mapper($f3->get('DB'), 'feed_items');
+		$this->_feed = new \DB\SQL\Mapper(\Base::instance()->get('DB'),'feeds');
+		$this->_item = new \DB\SQL\Mapper(\Base::instance()->get('DB'), 'feed_items');
 		
 		// picoFeed Reader
 		$this->_reader = new Reader();
@@ -25,9 +22,6 @@ class Feeds
 	
 	public function run()
 	{
-		// We need a base object for various functions
-		$f3 = \Base::instance();
-
 		$list = $this->_feed->find(array('status=?', 2));
 		
 		foreach ($list as $obj) 
@@ -63,9 +57,9 @@ class Feeds
 					 	$entry->reset();
 					 	
 						$entry->feed_id = $obj->id;
-						$entry->title = $f3->clean($item->getTitle());
-						$entry->description = $f3->clean($item->getContent());
-						$entry->author = $f3->clean($item->getAuthor());
+						$entry->title = \Base::instance()->clean($item->getTitle());
+						$entry->description = \Base::instance()->clean($item->getContent());
+						$entry->author = \Base::instance()->clean($item->getAuthor());
 						$entry->url = $item->getUrl();
 						$entry->pubDate = date("Y-m-d H:i:s", $item->getDate());
 						$entry->insert();

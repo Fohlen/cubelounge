@@ -21,14 +21,7 @@
 		<div id="header" class="container">
 			<div id="logo">
 				<h1><a href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>">cubelounge</a></h1>
-				<div id="menu">
-					<ul>
-						<li class="active"><a href="#" title="">News</a></li>
-						<li><a href="#"  title="">Share</a></li>
-						<li><a href="#"  title="">Matches</a></li>
-						<li><a href="#"  title="">Ranking</a></li>
-					</ul>
-				</div>
+					<?php echo Template::instance()->render('menu.htm'); ?>
 			</div>
 		</div>
 	</div>
