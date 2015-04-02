@@ -23,6 +23,14 @@ $f3->set('DB', new DB\SQL(
 	$dbConfig['password']
 ));
 
+// Custom error page
+$f3->set('ONERROR',
+		function($f3) {
+			$f3->set('content','404.htm');
+			echo View::instance()->render('layout.htm');
+		}
+);
+
 $f3->route('GET /',
 	function($f3) {
 		$f3->set('content','welcome.htm');
@@ -30,13 +38,18 @@ $f3->route('GET /',
 	}
 );
 
-$f3->route('GET /commands',
+$f3->route('GET /command',
 		function($f3) {
-			foreach (new DirectoryIterator('app/commands') as $Command) {
-				if($Command->isDot()) continue;
-				$commandName = "Commands\\" . $Command->getBasename('.php');
-				$task = new $commandName;
-				$task->run();
+			if (php_sapi_name() == 'cli') 
+			{
+				foreach (new DirectoryIterator('app/commands') as $Command) {
+					if($Command->isDot()) continue;
+					$commandName = "Commands\\" . $Command->getBasename('.php');
+					$task = new $commandName;
+					$task->run();
+				}
+			} else {
+				$f3->error(404);
 			}
 		}
 );
