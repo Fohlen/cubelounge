@@ -7,25 +7,17 @@ class News
 	
 	public function __construct()
 	{	
-		// Tiny macro to retrieve the class name
-		$className = function($obj) {
-			$classname = get_class($obj);
-				
-			if (preg_match('@\\\\([\w]+)$@', $classname, $matches)) {
-				$classname = $matches[1];
-			}
-				
-			return $classname;
-		};
-		
+		// Load a database mapper
 		$this->_item = new \DB\SQL\Mapper(\Base::instance()->get('DB'), 'feed_items');
-		\Base::instance()->set('page', $className($this));
 	}
 	
 	public function index()
 	{
-		\Base::instance()->set('content', 'welcome.htm');
-				
+		$data = $this->_item->find();
+		\Base::instance()->set('contentAvailable', ($this->_item->count() > 0));
+		\Base::instance()->set('data', $data);
+		\Base::instance()->set('content', 'news.htm');
+	
 		echo \View::instance()->render('layout.htm');
 	}
 }
