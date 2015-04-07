@@ -1,0 +1,18 @@
+	<div class="page-wrapper">
+		<div id="news" class="container">
+			<div id="portfolio" class="container">
+			<div><span class="arrow-down"></span></div>
+			
+			<?php 
+				foreach ($data as $item) {
+					echo '<div>';
+					echo '<div class="title">';
+					echo 	'<h2>'.$item['title'].'</h2>';
+					echo '</div>';
+					echo '<p>'.$item['description'].'</p>';
+					echo '<a href="'.$item['url'].'" class="button">Learn More</a> </div>';
+				}
+			?>
+			</div>
+		</div>
+	</div>
