@@ -3,9 +3,10 @@
     "description": "A community site for cube-engine based games.",
     "require": {
         "fguillot/picofeed": "0.1.*",
+        "google/apiclient": "~1.1",
         "killme/sauerbraten-query": "dev-master"
     },
-    "license": "GPL v3.0+",
+    "license": " GPL-3.0+",
     "authors": [
         {
             "name": "Fohlen",
