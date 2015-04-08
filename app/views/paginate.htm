@@ -1,0 +1,15 @@
+		<ul class="paginate">  			
+ 		<?php
+			// Define our controller instance. Fallback to 'news' if none is set.
+			$controller = (null !== (Base::instance()->get('PARAMS.controller')) ? strtolower(Base::instance()->get('PARAMS.controller')) : 'news');
+			
+			// Define a center of pagination. Pagination will always be +- 2
+            // To avoid negative pagination we always start off with $center >= 3
+			$center = ((Base::instance()->get('page') >= 3) ? Base::instance()->get('page') : 3);
+
+			for ($i = ($center -2); $i <= ($center +2); $i++)
+			{
+				echo '<li><a href="'.$SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'.$controller.'/page/'.$i.'">'.$i.'</a></li>' . PHP_EOL;
+			}
+		?>
+		</ul>

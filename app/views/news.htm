@@ -1,17 +1,15 @@
 	<div class="page-wrapper">
 		<div id="news" class="container">
-			<div id="portfolio" class="container">
-			<div><span class="arrow-down"></span></div>
-			
-			<?php 
-				foreach ($data as $item) {
-					echo '<div>';
+			<div id="three-column" class="container">			
+			<?php						 
+			foreach ($data as $item) {
+					echo '<div class="tbox">';
 					echo '<div class="title">';
-					echo 	'<h2>'.$item['title'].'</h2>';
+					echo 	'<h2>'.$item->title.'</h2>';
 					echo '</div>';
-					echo '<p>'.$item['description'].'</p>';
-					echo '<a href="'.$item['url'].'" class="button">Learn More</a> </div>';
-				}
+					echo '<p>'.$item->description.'</p>';
+					echo '<a href="'.$item->url.'" class="button">Read More</a> </div>';
+			}
 			?>
 			</div>
 		</div>

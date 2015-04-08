@@ -32,7 +32,10 @@
 			</div>
 		</div>
 	</div>
-	<?php echo $this->render(Base::instance()->get('content')); ?>
+	<?php 
+		echo $this->render(Base::instance()->get('content')); 
+		if (null !== Base::instance()->get('page')) echo $this->render('paginate.htm');
+	?>
 	<div id="copyright" class="container">
 	<!-- <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p> -->
 	<p>&copy; cubelounge. All rights reserved | <?php echo Base::instance()->format('Page rendered in {0} msecs', round(1e3*(microtime(TRUE)-$TIME),2)); ?> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>

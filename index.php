@@ -31,12 +31,17 @@ $f3->set('ONERROR',
 		}
 );
 
-
 // Routing scheme. Set the news page as our index and route all requests to their corresponding controllers
+// @controller -> @action (@param, optionally)
 $f3->route('GET /', 'Controllers\News->index');
 $f3->route('GET /@controller', 'Controllers\@controller->index');
 $f3->route('GET /@controller/@action', 'Controllers\@controller->@action');
-$f3->route('GET /@controller/@action/@id', 'Controllers\@controller->@action');
+$f3->route('GET /@controller/@action/@param', 'Controllers\@controller->@action');
+
+// Automatically route /controller/page to /controller/page/0
+$f3->route('GET /@controller/page', function($f3) {
+	$f3->reroute('/'.$f3->get('PARAMS.controller').'/page/0');
+});
 
 $f3->route('GET /command',
 		function($f3) {			
