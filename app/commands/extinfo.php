@@ -21,6 +21,9 @@ class Extinfo
 	{
 		$this->_queryManager = new SauerbratenQueryManager();
 		$this->_storage = new \DB\Jig(\Base::instance()->get('TEMP')); // Use Jig for temporary databases
+		$this->_storage->drop();
+		
+		// Add new local databases
 		$this->_servers = new \DB\Jig\Mapper($this->_storage, 'servers.json');
 		$this->_matches = new \DB\Jig\Mapper($this->_storage, 'matches.json');
 		$this->_players = new \DB\Jig\Mapper($this->_storage, 'players.json');
