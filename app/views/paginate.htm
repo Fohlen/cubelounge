@@ -9,7 +9,11 @@
 
 			for ($i = ($center -2); $i <= ($center +2); $i++)
 			{
-				echo '<li><a href="'.$SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'.$controller.'/page/'.$i.'">'.$i.'</a></li>' . PHP_EOL;
+				if ($i == Base::instance()->get('page')) {
+					echo '<li><a href="'.$SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'.$controller.'/page/'.$i.'" class="active">'.$i.'</a></li>' . PHP_EOL;
+				} else {
+					echo '<li><a href="'.$SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'.$controller.'/page/'.$i.'">'.$i.'</a></li>' . PHP_EOL;
+				}
 			}
 		?>
 		</ul>
