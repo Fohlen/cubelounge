@@ -27,6 +27,13 @@
 							<li><a href="#" title="">Share</a></li>						
 							<li><a href="#" title="">Matches</a></li>						
 							<li><a href="#" title="">Ranking</a></li>
+							<?php
+								if (null !== Base::instance()->get('SESSION.uid')) {
+									echo '<li><a href="login/">My account</a></li>';
+								} else {
+									echo '<li><a href="login/signup">Sign in</a></li>';
+								}
+							?>
 						</ul>
 					</div>
 			</div>
@@ -59,6 +66,10 @@
 		    return this.href == url;
 		}).addClass('active');
 	});
+	
+	$("signup").submit(function (e)) {
+		// e.preventDefault();
+	}
 	</script>
 </body>
 </html>

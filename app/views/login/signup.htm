@@ -1,0 +1,41 @@
+	<div class="page-wrapper">
+	<div id="news" class="container">
+		<div id="three-column" class="container">
+			<div class="window">
+				<input type="checkbox" id="signup" class="toggle">
+  				<label for="signup" class="title">
+  					<div class="title">
+  						<h2>Sign up for this site.</h2>
+  					</div>
+  				</label>
+				<div class="tbox">
+					<p>If you'd like to enjoy member-related services<br>
+					(e.g: matchmaking) you register using Google.</p>
+			
+					<form action="<?php echo $URI ?>" method="post" name="signup">
+      					<ul>
+             				<li>
+                				<label for="name">In-game nick</label>
+                				<input type="text" name="name" maxlength="255" value="" required>
+            				</li>
+      						<li>
+      							<label for="alias">Your game alias (optionally)</label>
+      							<input type="text" name="alias" maxlength="255" value="">
+      						</li>
+            				<li>
+                				<label for="pubkey">Public key (optionally)</label>
+                				<input type="text" name="pubkey" value="" maxlength="49">
+            				</li>
+            				<li>
+                				<input type="submit" class="button" value="Sign up">
+            				</li>
+        				</ul>
+					</form>
+				</div>
+			</div>
+			<div class="title">
+				<h2>Already have an account? <a href="/login/signin">Sign in.</a></h2>
+			</div>
+		</div>
+	</div>
+	</div>

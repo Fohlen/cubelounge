@@ -33,16 +33,36 @@ $f3->set('ONERROR',
 
 // Routing scheme. Set the news page as our index and route all requests to their corresponding controllers
 // @controller -> @action (@param, optionally)
-$f3->route('GET /', 'Controllers\News->index');
-$f3->route('GET /@controller', 'Controllers\@controller->index');
-$f3->route('GET /@controller/@action', 'Controllers\@controller->@action');
-$f3->route('GET /@controller/@action/@param', 'Controllers\@controller->@action');
+$f3->route('GET|POST /', 'Controllers\News->index');
+$f3->route('GET|POST /@controller', 'Controllers\@controller->index');
+$f3->route('GET|POST /@controller/@action', 'Controllers\@controller->@action');
+$f3->route('GET|POST /@controller/@action/@param', 'Controllers\@controller->@action');
 
 // Automatically route /controller/page to /controller/page/0
 $f3->route('GET /@controller/page', function($f3) {
 	$f3->reroute('/'.$f3->get('PARAMS.controller').'/page/0');
 });
 
+// Registered user routes. Automatically route to dashboard once logged in.
+/*$f3->route('GET|POST /login/signup', function($f3) {
+	if (null !== Base::instance()->get('SESSION.uid')) {
+		$f3->reroute('/login');
+	} else {
+		$login = new Controllers\Login();
+		$login->signup();	
+	}
+});
+
+$f3->route('GET|POST /login/signin', function($f3) {
+	if (null !== Base::instance()->get('SESSION.uid')) {
+		$f3->reroute('/login');
+	} else {
+		$login = new Controllers\Login();
+		$login->signin();
+	}
+});*/
+
+// Command line cronjobs.
 $f3->route('GET /command',
 		function($f3) {			
 			if (php_sapi_name() == 'cli') 
@@ -58,5 +78,8 @@ $f3->route('GET /command',
 			}
 		}
 );
+
+// Initialize user sessions
+new Session();
 
 $f3->run();
