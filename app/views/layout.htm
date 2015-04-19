@@ -28,7 +28,7 @@
 							<li><a href="#" title="">Matches</a></li>						
 							<li><a href="#" title="">Ranking</a></li>
 							<?php
-								if (null !== Base::instance()->get('SESSION.uid')) {
+								if (\Helpers\User::instance()->isLoggedin()) {
 									echo '<li><a href="login/">My account</a></li>';
 								} else {
 									echo '<li><a href="login/signup">Sign in</a></li>';

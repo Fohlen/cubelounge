@@ -63,6 +63,26 @@
 /* Form Style                                                                    */
 /*********************************************************************************/
 
+		form ul li label
+		{
+			margin-bottom: 7px;
+		}
+		
+		form ul li input text
+		{
+			padding: 3px;
+			margin-bottom: 7px;
+ 	 		border: none;
+			border-bottom: solid 2px #c9c9c9;
+			transition: border 0.3s;
+		}
+		
+		form ul li input[type="text"]:focus,
+		form ul li input[type="text"].focus {
+  			border-bottom: solid 2px #969696;
+		}
+
+		/**
 		form
 		{
 		}
@@ -100,55 +120,56 @@
 				outline: none;
 			}
 
-				form input.text:hover,
-				form select:hover,
-				form textarea:hover
-				{
-				}
+			form input.text:hover,
+			form select:hover,
+			form textarea:hover
+			{
+			}
 
-				form input.text:focus,
-				form select:focus,
-				form textarea:focus
-				{
-					box-shadow: 0 0 2px 1px #E0E0E0;
-					background: #fff;
-				}
+			form input.text:focus,
+			form select:focus,
+			form textarea:focus
+			{
+				box-shadow: 0 0 2px 1px #E0E0E0;
+				background: #fff;
+			}
 				
-				form textarea
-				{
-					min-height: 12em;
-				}
+			form textarea
+			{
+				min-height: 12em;
+			}
 
-				form .formerize-placeholder
-				{
-					color: #555 !important;
-				}
+			form .formerize-placeholder
+			{
+				color: #555 !important;
+			}
 
-				form ::-webkit-input-placeholder
-				{
-					color: #555 !important;
-				}
+			form ::-webkit-input-placeholder
+			{
+				color: #555 !important;
+			}
 
-				form :-moz-placeholder
-				{
-					color: #555 !important;
-				}
+			form :-moz-placeholder
+			{
+				color: #555 !important;
+			}
 
-				form ::-moz-placeholder
-				{
-					color: #555 !important;
-				}
+			form ::-moz-placeholder
+			{
+				color: #555 !important;
+			}
 
-				form :-ms-input-placeholder
-				{
-					color: #555 !important;
-				}
+			form :-ms-input-placeholder
+			{
+				color: #555 !important;
+			}
 
-				form ::-moz-focus-inner
-				{
-					border: 0;
-				}
+			form ::-moz-focus-inner
+			{
+				border: 0;
+			}
 
+			*/
 
 /*********************************************************************************/
 /* Image Style                                                                   */

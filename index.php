@@ -38,29 +38,15 @@ $f3->route('GET|POST /@controller', 'Controllers\@controller->index');
 $f3->route('GET|POST /@controller/@action', 'Controllers\@controller->@action');
 $f3->route('GET|POST /@controller/@action/@param', 'Controllers\@controller->@action');
 
-// Automatically route /controller/page to /controller/page/0
-$f3->route('GET /@controller/page', function($f3) {
-	$f3->reroute('/'.$f3->get('PARAMS.controller').'/page/0');
-});
-
-// Registered user routes. Automatically route to dashboard once logged in.
-/*$f3->route('GET|POST /login/signup', function($f3) {
-	if (null !== Base::instance()->get('SESSION.uid')) {
-		$f3->reroute('/login');
+// Deny access to the dashboard if not logged in
+$f3->route('GET|POST /login', function($f3){
+	if (Helpers\User::instance()->isLoggedIn()) {
+		$dash = new Controllers\Login();
+		$dash->index();
 	} else {
-		$login = new Controllers\Login();
-		$login->signup();	
+		$f3->error(404);
 	}
 });
-
-$f3->route('GET|POST /login/signin', function($f3) {
-	if (null !== Base::instance()->get('SESSION.uid')) {
-		$f3->reroute('/login');
-	} else {
-		$login = new Controllers\Login();
-		$login->signin();
-	}
-});*/
 
 // Command line cronjobs.
 $f3->route('GET /command',

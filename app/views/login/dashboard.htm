@@ -1,33 +1,22 @@
 	<div class="page-wrapper">
 		<div id="news" class="container">
-			<div id="three-column" class="container">
-				<div class="window">
-				<input type="checkbox" id="settings" class="toggle">
-  				<label for="settings" class="title">
-  					<div class="title">
-  						<h2>Profile settings</h2>
-  					</div>
-  				</label>
 				<form action="<?php echo $URI ?>" method="post" name="signup">
 				      <ul>
              				<li>
-                				<label for="name">In-game nick</label>
-                				<input type="text" name="name" maxlength="255" value="<?php echo Base::instance()->get('name'); ?>" readonly>
-            				</li>
+             					<label for="name">Your in-game nick: <?php echo \Helpers\User::instance()->name ?></label>
+             				</li>
       						<li>
       							<label for="alias">Your game alias (optionally)</label>
-      							<input type="text" name="alias" maxlength="255" value="<?php echo Base::instance()->get('alias'); ?>">
+      							<input type="text" name="alias" maxlength="255" value="<?php echo \Helpers\User::instance()->alias ?>">
       						</li>
             				<li>
                 				<label for="pubkey">Public key (optionally)</label>
-                				<input type="text" name="pubkey" value="<?php echo Base::instance()->get('pubkey'); ?>" maxlength="49">
+                				<input type="text" name="pubkey" value="<?php echo \Helpers\User::instance()->pubkey ?>" maxlength="49">
             				</li>
             				<li>
                 				<input type="submit" class="button" value="Update">
             				</li>
         				</ul>
 				</form>
-				</div>
-			</div>
 		</div>
 	</div>

@@ -21,23 +21,23 @@ class Login
 		// Request access to email and basic profile information
 		// We don't want Google+ circles crap
 		$this->_client->setScopes(array("https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"));		
-		
-		// Initialize the object if session is set.
-		if (null !== \Base::instance()->get('SESSION.uid'))
-			$this->_user->load(array("id=?", \Base::instance()->get('SESSION.uid')));
 	}
 	
 	public function index()
 	{
-
-		\Base::instance()->set('name', $this->_user->name);
-		\Base::instance()->set('alias', $this->_user->alias);
-		\Base::instance()->set('pubkey', $this->_user->pubkey);
+		// Show the user's dashboard
+		// TODO: There is lots of work to do (usability)!
 		\Base::instance()->set('content', 'login/dashboard.htm');
 		
 		echo \View::instance()->render('layout.htm');
 	}
-	
+
+	/**
+	 * A function to update your account details
+	public function update()
+	{
+		
+	}*/
 	
 	public function signup()
 	{
@@ -134,8 +134,14 @@ class Login
 				$userInfo = $this->requestUserInfo();
 				
 				$this->_user->load(array("auth_id=?", $userInfo->id));
-				\Base::instance()->set('SESSION.uid', $this->_user->id);
-				\Base::instance()->reroute('/login');
+				
+				// auth_id is unique, therefore only true/false can apply
+				if ($this->_user->count(array("id=?", $this->_user->id))) {
+					\Base::instance()->set('SESSION.uid', $this->_user->id);
+					\Base::instance()->reroute('/login');
+				} else {
+					\Base::instance()->error(404);
+				}
 			} catch (\Google_Exception $e) {
 				//TODO: Add logging
 			}			
