@@ -1,13 +1,15 @@
 	<div class="page-wrapper">
 		<div id="news" class="container">
 			<div id="three-column" class="container">			
-			<?php						 
+			<?php
+			$textHelper = new \Helpers\Text();
+									 
 			foreach ($data as $item) {
 					echo '<div class="tbox">';
 					echo '<div class="title">';
 					echo 	'<h2>'.$item->title.'</h2>';
 					echo '</div>';
-					echo '<p>'.$item->description.'</p>';
+					echo '<p>'.$textHelper->split($item->description, 250).'</p>';
 					echo '<a href="'.$item->url.'" class="button">Read More</a> </div>';
 			}
 			?>

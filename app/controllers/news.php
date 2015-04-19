@@ -4,11 +4,13 @@ namespace Controllers;
 class News
 {
 	private $_item;
+	private $_feed;
 	
 	public function __construct()
 	{	
 		// Load a database mapper
 		$this->_item = new \DB\SQL\Mapper(\Base::instance()->get('DB'), 'feed_items');
+		$this->_feed = new \DB\SQL\Mapper(\Base::instance()->get('DB'), 'feeds');
 	}
 	
 	public function index()
