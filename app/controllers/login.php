@@ -23,22 +23,6 @@ class Login
 		$this->_client->setScopes(array("https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"));		
 	}
 	
-	public function index()
-	{
-		// Show the user's dashboard
-		// TODO: There is lots of work to do (usability)!
-		\Base::instance()->set('content', 'login/dashboard.htm');
-		
-		echo \View::instance()->render('layout.htm');
-	}
-
-	/**
-	 * A function to update your account details
-	public function update()
-	{
-		
-	}*/
-	
 	public function signup()
 	{
 		if (null !== \Base::instance()->get('POST.name'))
@@ -138,7 +122,7 @@ class Login
 				// auth_id is unique, therefore only true/false can apply
 				if ($this->_user->count(array("id=?", $this->_user->id))) {
 					\Base::instance()->set('SESSION.uid', $this->_user->id);
-					\Base::instance()->reroute('/login');
+					\Base::instance()->reroute('/dashboard');
 				} else {
 					\Base::instance()->error(404);
 				}

@@ -1,0 +1,60 @@
+	<div class="page-wrapper">
+		<div class="three-column">
+				<div id="news" class="container">
+					<div id="three-column" class="container">
+						<div class="tbox">
+							<div class="tabs">
+    							<ul class="tab-links">
+        							<li class="active"><a href="#account">Account settings</a></li>
+        							<li><a href="#manage">Manage</a></li>
+	    						</ul>
+ 
+    						<div class="tab-content">
+	        					<div id="account" class="tab active">
+        	    					<form action="<?php echo $URI . '/update'?>" method="post" name="signup">
+				      					<ul>
+             								<li>
+             									<p>Your in-game nick: <?php echo \Helpers\User::instance()->name ?></p>
+             								</li>
+      										<li>
+      											<label for="alias">Your game alias (optionally)</label>
+      											<input type="text" name="alias" maxlength="255" value="<?php echo \Helpers\User::instance()->alias ?>">
+      										</li>
+            								<li>
+                								<label for="pubkey">Public key (optionally)</label>
+                								<input type="text" name="pubkey" value="<?php echo \Helpers\User::instance()->pubkey ?>" maxlength="49">
+            								</li>
+            								<li>
+                								<input type="submit" class="button" value="Update">
+            								</li>
+        								</ul>
+									</form>	
+	        					</div>
+ 
+        						<div id="manage" class="tab">
+        	    					<p>Tab #2 content goes here!</p>
+    	        					<p>Donec pulvinar neque sed semper lacinia. Curabitur lacinia ullamcorper nibh; quis imperdiet velit eleifend ac. Donec blandit mauris eget aliquet lacinia! Donec pulvinar massa interdum risus ornare mollis. In hac habitasse platea dictumst. Ut euismod tempus hendrerit. Morbi ut adipiscing nisi. Etiam rutrum sodales gravida! Aliquam tellus orci, iaculis vel.</p>
+	        					</div>
+    						</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	
+	<script>
+	jQuery(document).ready(function() {
+	    jQuery('.tabs .tab-links a').on('click', function(e)  {
+	        var currentAttrValue = jQuery(this).attr('href');
+	 
+	        // Show/Hide Tabs
+	        jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+	 
+	        // Change/remove current tab to active
+	        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+	 
+	        e.preventDefault();
+	    });
+	});
+	</script>

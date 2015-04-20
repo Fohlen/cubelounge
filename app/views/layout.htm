@@ -15,6 +15,8 @@
 	<!--[if lt IE 9]>
   		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   	<![endif]-->
+  	<script src="assets/js/jquery-2.1.3.min.js"></script>
+  	
 </head>
 <body>
 	<div id="header-wrapper">
@@ -29,9 +31,9 @@
 							<li><a href="#" title="">Ranking</a></li>
 							<?php
 								if (\Helpers\User::instance()->isLoggedin()) {
-									echo '<li><a href="login/">My account</a></li>';
+									echo '<li><a href="/dashboard/">My account</a></li>';
 								} else {
-									echo '<li><a href="login/signup">Sign in</a></li>';
+									echo '<li><a href="/login/signup">Sign in</a></li>';
 								}
 							?>
 						</ul>
@@ -53,17 +55,19 @@
 		</ul>
 	</div>
 	
-	<script src="assets/js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript">
-		$(function () {
-			var url = window.location.href;
-			
-			// Will only work if string in href matches with location
-			$('#menu a[href="'+ url +'"]').addClass('active');
-			// Will also work for relative and absolute hrefs
-			$('#menu a').filter(function() {
-	    		return this.href == url;
-			}).addClass('active');
+	jQuery(document).ready(function() {
+	    jQuery('#menu #menu a').on('click', function(e)  {
+	        var currentAttrValue = jQuery(this).attr('href');
+	 
+	        // Show/Hide Tabs
+	        jQuery('#menu ' + currentAttrValue).show().siblings().hide();
+	 
+	        // Change/remove current tab to active
+	        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+	 
+	        e.preventDefault();
+	    });
 	});
 	</script>
 </body>

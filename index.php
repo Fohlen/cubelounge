@@ -39,9 +39,9 @@ $f3->route('GET|POST /@controller/@action', 'Controllers\@controller->@action');
 $f3->route('GET|POST /@controller/@action/@param', 'Controllers\@controller->@action');
 
 // Deny access to the dashboard if not logged in
-$f3->route('GET|POST /login', function($f3){
+$f3->route('GET|POST /dashboard', function($f3){
 	if (Helpers\User::instance()->isLoggedIn()) {
-		$dash = new Controllers\Login();
+		$dash = new Controllers\Dashboard();
 		$dash->index();
 	} else {
 		$f3->error(404);

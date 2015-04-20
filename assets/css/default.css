@@ -866,3 +866,50 @@
 	input.toggle:checked ~ div { height: 320px; }
 	input.toggle:checked + label { }
 	input.toggle { display: none; }
+
+	/*----- Tabs -----*/
+	.tabs {
+    	width:100%;
+    	display:inline-block;
+	}
+ 
+    /*----- Tab Links -----*/
+    /* Clearfix */
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+ 
+    .tab-links li {
+		display: inline-block;
+    }
+ 
+    .tab-links a {
+		display: inline-block;
+		padding: 1.3em 1.5em;
+		text-decoration: none;
+		font-size: 0.90em;
+		font-weight: 600;
+		text-transform: uppercase;
+		outline: 0;
+		color: #FFF;
+    }
+ 
+    li.active a, li.active a:hover {
+		background: #3E5A99;
+    }
+ 
+    /*----- Content of Tabs -----*/
+    .tab-content {
+        padding:15px;
+        border-radius:3px;
+    }
+ 
+    .tab {
+    	display:none;
+    }
+ 
+    .tab.active {
+    	display:block;
+    }
