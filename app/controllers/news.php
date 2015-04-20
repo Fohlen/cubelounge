@@ -15,8 +15,7 @@ class News
 	
 	public function index()
 	{
-		//$data = \Base::instance()->get('DB')->exec('SELECT * FROM `feed_items` WHERE `pubDate` > NOW() - INTERVAL 4 WEEK ORDER BY `pubDate` LIMIT ?,10', 0, 60);
-		$data = $this->_item->find("", array("order" => "pubDate DESC", "offset" => 0, "limit" => 10), 60);
+		$data = $this->_item->find("feed_id IN ( SELECT `id` FROM `feeds` WHERE `status`=2 )", array("order" => "pubDate DESC", "offset" => 0, "limit" => 10), 60);
 		
 		\Base::instance()->set('data', $data);
 		\Base::instance()->set('page', 0);
@@ -28,7 +27,7 @@ class News
 	public function page()
 	{
 		$param = \Base::instance()->get('PARAMS.param');
-		$data = $this->_item->find("", array("order" => "pubDate DESC", "offset" => ($param * 10), "limit" => 10), 60);
+		$data = $this->_item->find("feed_id IN ( SELECT `id` FROM `feeds` WHERE `status`=2 )", array("order" => "pubDate DESC", "offset" => ($param * 10), "limit" => 10), 60);
 		
 		\Base::instance()->set('data', $data);
 		\Base::instance()->set('page', $param);
