@@ -139,6 +139,16 @@ class Login
 		
 	}
 	
+	public function isAvailable()
+	{
+		$name = \Base::instance()->get('POST.name');
+		if ($this->_user->count(array("name=?", $name))) {
+			echo '<i class="fa fa-times"></i>' . PHP_EOL;
+		} else {
+			echo '<i class="fa fa-check"></i>' . PHP_EOL;
+		}
+	}
+	
 	private function requestUserInfo()
 	{
 		$oAuth = new \Google_Service_Oauth2($this->_client);

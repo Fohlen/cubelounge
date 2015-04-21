@@ -16,11 +16,12 @@
       					<ul>
              				<li>
                 				<label for="name">In-game nick</label>
-                				<input type="text" name="name" maxlength="255" value="Fohlen" required>
+                				<input type="text" name="name" id="name" maxlength="255" value="" required>
+                				<span id="message"></span>
             				</li>
       						<li>
       							<label for="alias">Your game alias <i>(optionally)</i></label>
-      							<input type="text" name="alias" maxlength="255" value="=DK=Fohlen">
+      							<input type="text" name="alias" maxlength="255" value="">
       						</li>
             				<li>
                 				<label for="pubkey">Public authkey <i>(optionally)</i></label>
@@ -39,3 +40,17 @@
 		</div>
 	</div>
 	</div>
+
+	<script type="text/javascript">
+	$( "#name" ).keyup(function() {
+		$.ajax({
+			method: "POST",
+			url: "/login/isAvailable",
+			data: { name: $(this).val() },
+			success: function(data) {
+				$("#message").html(data);
+			}
+		})
+	});
+	</script>
+ 
