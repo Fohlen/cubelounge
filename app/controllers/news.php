@@ -19,7 +19,7 @@ class News
 		
 		\Base::instance()->set('data', $data);
 		\Base::instance()->set('page', 0);
-		\Base::instance()->set('content', 'news.htm');
+		\Base::instance()->set('content', 'news/news.htm');
 		
 		echo \View::instance()->render('layout.htm');
 	}
@@ -31,7 +31,7 @@ class News
 		
 		\Base::instance()->set('data', $data);
 		\Base::instance()->set('page', $param);
-		\Base::instance()->set('content', 'news.htm');
+		\Base::instance()->set('content', 'news/news.htm');
 		
 		echo \View::instance()->render('layout.htm');
 	}
@@ -42,9 +42,9 @@ class News
 		$data = $this->_item->load(array("id=?", $id));
 		
 		// We could combine $this->_item->cast() tables with it's properties but this is probably faster (dirty)
-		\Base::instance()->set('data', array($this->_item));
+		\Base::instance()->set('data', $data);
 		\Base::instance()->set('paginate', false);
-		\Base::instance()->set('content', 'news.htm');
+		\Base::instance()->set('content', 'news/entry.htm');
 		
 		echo \View::instance()->render('layout.htm');
 	}
