@@ -51,7 +51,7 @@ class Feeds
 				// Parse all feed items
 				foreach(array_reverse($feed->items) as $item)
 				{	
-					if ($this->_item->dry() || date("Y-m-d H:i:s", $item->getDate()) > $this->_item->pubDate) {
+					if ($this->_item->dry() || $item->getDate()->format("Y-m-d H:i:s") > $this->_item->pubDate) {
 						// Save an instance of our entry
 					 	$entry = &$this->_item;
 					 	$entry->reset();
@@ -61,7 +61,7 @@ class Feeds
 						$entry->description = \Base::instance()->clean($item->getContent());
 						$entry->author = \Base::instance()->clean($item->getAuthor());
 						$entry->url = $item->getUrl();
-						$entry->pubDate = date("Y-m-d H:i:s", $item->getDate());
+						$entry->pubDate = $item->getDate()->format("Y-m-d H:i:s");
 						$entry->insert();
 					}					 
 				}
