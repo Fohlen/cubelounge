@@ -32,7 +32,7 @@ class Extinfo
 	public function run()
 	{
 		$this->updateFromMaster();
-		
+
 		foreach($this->_servers->find() as $server) {
 			try {
 				$c = new Server($server->ip, $server->port +1);
@@ -58,7 +58,8 @@ class Extinfo
 			$this->_matches->save();
 			
 			// Update the players according to the matches
-			foreach($ext['players'] as $player) {
+			// We do not actually need the players
+			/*foreach($ext['players'] as $player) {
 				$this->_players->reset();
 				$this->_players->match_id = $this->_matches->_id;
 				$this->_players->cn = $player['cn'];
@@ -73,10 +74,7 @@ class Extinfo
 				//$this->_players->ip = implode(".", $players['ip']);
 				
 				$this->_players->save();
-			}
-			
-			break;
-			
+			}*/	
 		}
 	}
 	
