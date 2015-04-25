@@ -15,7 +15,7 @@ class Extinfo
 	// What is happening right now?
 	private $_servers;
 	private $_matches;
-	private $_players;
+	// private $_players;
 	
 	public function __construct()
 	{
@@ -26,7 +26,7 @@ class Extinfo
 		// Add new local databases
 		$this->_servers = new \DB\Jig\Mapper($this->_storage, 'servers.json');
 		$this->_matches = new \DB\Jig\Mapper($this->_storage, 'matches.json');
-		$this->_players = new \DB\Jig\Mapper($this->_storage, 'players.json');
+		// $this->_players = new \DB\Jig\Mapper($this->_storage, 'players.json');
 	}
 	
 	public function run()
@@ -37,8 +37,9 @@ class Extinfo
 			try {
 				$c = new Server($server->ip, $server->port +1);
 				$ext = $this->_queryManager->query($c)->getQueryData();
-			} catch (\UnderflowException $e) {
+			} catch (\Exception $e) {
 				//TODO: Add logging
+				continue;
 			}
 			
 			// Update the basic server information
@@ -64,7 +65,7 @@ class Extinfo
 				$this->_players->match_id = $this->_matches->_id;
 				$this->_players->cn = $player['cn'];
 				$this->_players->name = $player['name'];
-				$this->_players->team = $player['team'];
+				$this->_players-> team = $player['team'];
 				$this->_players->frags = $player['frags'];
 				$this->_players->flags = $player['flags'];
 				$this->_players->deaths = $player['deaths'];
