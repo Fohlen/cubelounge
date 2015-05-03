@@ -63,16 +63,18 @@
 	</div>
 	
 	<script type="text/javascript">
-    	jQuery(document).ready(function($){
-        	// Get current url
-        	// Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
-        	var url = window.location.href;
-        	$('.menu_main a[href="'+url+'"]').addClass('a');
-        	// Will also work for relative and absolute hrefs
-        	$('.menu_main a').filter(function() {
-        	    return this.href == url;
-        	}).addClass('active');
-    	});
+	$(function(){
+	    $page = window.location.pathname;
+
+	    $('.menu_main li a').each(function(){
+	        var $href = $(this).attr('href');
+	        if ( ($href == $page) || ($href == '') ) {
+	            $(this).addClass('active');
+	        } else {
+	            $(this).removeClass('active');
+	        }
+	    });
+	});
 	</script>
 </body>
 </html>
