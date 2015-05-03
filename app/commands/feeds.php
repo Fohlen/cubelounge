@@ -57,9 +57,9 @@ class Feeds
 					 	$entry->reset();
 					 	
 						$entry->feed_id = $obj->id;
-						$entry->title = \Base::instance()->clean($item->getTitle());
-						$entry->description = \Base::instance()->clean($item->getContent());
-						$entry->author = \Base::instance()->clean($item->getAuthor());
+						$entry->title = $item->getTitle();
+						$entry->description = $item->getContent();
+						$entry->author = $item->getAuthor();
 						$entry->url = $item->getUrl();
 						$entry->pubDate = $item->getDate()->format("Y-m-d H:i:s");
 						$entry->insert();
