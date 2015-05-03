@@ -1,45 +1,25 @@
-	<div class="page-wrapper">
-	<div id="news" class="container">
-		<div id="three-column" class="container">
-			<div class="window">
-				<input type="checkbox" id="signup" class="toggle" checked>
-  				<label for="signup" class="title">
-  					<div class="title">
-  						<h2>Sign up for this site.</h2>
-  					</div>
-  				</label>
-				<div class="tbox">
-					<p>If you'd like to enjoy member-related services<br>
-					(e.g: matchmaking) you register using Google.</p>
-			
-					<form action="<?php echo $URI ?>" method="post" name="signup">
-      					<ul>
-             				<li>
-                				<label for="name">In-game nick</label>
-                				<input type="text" name="name" id="name" maxlength="255" value="" required>
-                				<span id="message"></span>
-            				</li>
-      						<li>
-      							<label for="alias">Your game alias <i>(optionally)</i></label>
-      							<input type="text" name="alias" maxlength="255" value="">
-      						</li>
-            				<li>
-                				<label for="pubkey">Public authkey <i>(optionally)</i></label>
-                				<input type="text" name="pubkey" value="" maxlength="49">
-            				</li>
-            				<li>
-                				<input type="submit" class="button" value="Sign up">
-            				</li>
-        				</ul>
-					</form>
-				</div>
-			</div>
-			<div class="title">
-				<h2>Already have an account? <a href="/login/signin">Sign in.</a></h2>
-			</div>
-		</div>
+	<div class="window">
+		<input type="checkbox" id="signup" class="toggle" checked>
+  			<label for="signup" class="title">
+  					<h2>Sign up for this site.</h2>
+  			</label>
+			<p>If you'd like to enjoy member-related services<br>
+			(e.g: matchmaking) you are able to register using Google.</p>
+		
+			<form action="<?php echo $URI ?>" method="post" name="signup">
+           		<label for="name">In-game nick</label>
+           		<input type="text" name="name" id="name" maxlength="255" value="" required>
+           		<span id="message"></span>
+      			<label for="alias">Your game alias <i>(optionally)</i></label>
+      			<input type="text" name="alias" maxlength="255" value="">
+           		<label for="pubkey">Public authkey <i>(optionally)</i></label>
+           		<input type="text" name="pubkey" value="" maxlength="49">
+           		<br><br>
+           		<input type="submit" class="button" value="Sign up">
+			</form>
 	</div>
-	</div>
+	
+	<h2>Already have an account? <a href="/login/signin">Sign in.</a></h2>
 
 	<script type="text/javascript">
 	$( "#name" ).keyup(function() {

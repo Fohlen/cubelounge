@@ -6,10 +6,13 @@
 	<base href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>" />
 	<title>cubelounge</title>
 	<meta name="keywords" content="" />
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="A community site for cube-engine based games." />
 	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
-	<link href="assets/css/default.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="assets/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/skin.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 	<!--[if lt IE 9]>
@@ -19,56 +22,57 @@
   	
 </head>
 <body>
-	<div id="header-wrapper">
-		<div id="header" class="container">
-			<div id="logo">
-				<h1><a href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>">cubelounge</a></h1>
-					<div id="menu">
-						<ul>
-							<li><a href="/news" title="">News</a></li>
-							<li><a href="#" title="">Share</a></li>						
-							<li><a href="#" title="">Matches</a></li>						
-							<li><a href="#" title="">Ranking</a></li>
-							<?php
-								if (\Helpers\User::instance()->isLoggedin()) {
-									echo '<li><a href="/dashboard/">My account</a></li>';
-								} else {
-									echo '<li><a href="/login/signup">Sign in</a></li>';
-								}
-							?>
-						</ul>
-					</div>
+	<div class="container">
+		<div class="header clearfix">
+			<div class="logo">
+				<a href="<?php echo $SCHEME.'://'.$HOST.':'.$PORT.$BASE.'/'; ?>">cubelounge</a>
 			</div>
+					
+			<nav class="menu_main">
+				<ul>
+					<li><a href="/news" title="">News</a></li>
+					<li><a href="#" title="">Share</a></li>						
+					<li><a href="#" title="">Matches</a></li>						
+					<li><a href="#" title="">Ranking</a></li>
+					<?php
+						if (\Helpers\User::instance()->isLoggedin()) {
+							echo '<li><a href="/dashboard/">My account</a></li>';
+						} else {
+							echo '<li><a href="/login/signup">Sign in</a></li>';
+						}
+					?>
+				</ul>
+			</nav>
 		</div>
-	</div>
-	<?php 
-		echo $this->render(Base::instance()->get('content')); 
-		if (null !== Base::instance()->get('page')) echo $this->render('paginate.htm');
-	?>
-	<div id="copyright" class="container">
-	<!-- <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p> -->
-	<p>&copy; cubelounge. All rights reserved | <?php echo Base::instance()->format('Page rendered in {0} msecs', round(1e3*(microtime(TRUE)-$TIME),2)); ?> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-		<ul class="contact">
-			<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
-			<li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
-			<li><a href="#" class="icon icon-rss"><span>Feed</span></a></li>
-		</ul>
+			
+		<?php 
+			echo $this->render(Base::instance()->get('content')); 
+			if (null !== Base::instance()->get('page')) echo $this->render('paginate.htm');
+		?>
+		
+ 		<footer class="footer clearfix">
+			<div class="copyright">&copy; cubelounge. All rights reserved | <?php echo Base::instance()->format('Page rendered in {0} msecs', round(1e3*(microtime(TRUE)-$TIME),2)); ?></div>
+			<nav class="menu_bottom">
+				<ul>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-rss"></i></a></li>
+				</ul>
+			</nav>
+		</footer>
 	</div>
 	
 	<script type="text/javascript">
-	jQuery(document).ready(function() {
-	    jQuery('#menu #menu a').on('click', function(e)  {
-	        var currentAttrValue = jQuery(this).attr('href');
-	 
-	        // Show/Hide Tabs
-	        jQuery('#menu ' + currentAttrValue).show().siblings().hide();
-	 
-	        // Change/remove current tab to active
-	        jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
-	 
-	        e.preventDefault();
-	    });
-	});
+    	jQuery(document).ready(function($){
+        	// Get current url
+        	// Select an a element that has the matching href and apply a class of 'active'. Also prepend a - to the content of the link
+        	var url = window.location.href;
+        	$('.menu_main a[href="'+url+'"]').addClass('a');
+        	// Will also work for relative and absolute hrefs
+        	$('.menu_main a').filter(function() {
+        	    return this.href == url;
+        	}).addClass('active');
+    	});
 	</script>
 </body>
 </html>

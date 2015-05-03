@@ -1,22 +1,17 @@
-	<div class="page-wrapper">
-		<div id="news" class="container">
-			<div id="three-column" class="container">
-				<!-- <form action="<?php echo $URI . '/update'?>" method="post" name="signup">
-					<input type="text" name="search" value="">
-				</form>-->
+	<div class=info>
+
 						
 			<?php
 			$textHelper = new \Helpers\Text();
 									 
 			foreach ($data as $item) {
-					echo '<div class="tbox1">';
-					echo '<div class="title">';
-					echo 	'<h2>'.$item->title.'</h2>';
+					echo '<article class="article clearfix">';
+					echo '<h2>'.$item->title.'</h2>';
+					echo '<div class="column_100">';
+					echo '<p>'.html_entity_decode($textHelper->split($item->description, 250)).'</p>';
 					echo '</div>';
-					echo '<p>'.$textHelper->split($item->description, 250).'</p>';
-					echo '<a href="/news/id/'.$item->id.'" class="button">Read more</a> </div>';
+					echo '<a href="/news/id/'.$item->id.'" class="button">Read more</a>';
+					echo '</article>';
 			}
 			?>
-			</div>
-		</div>
 	</div>

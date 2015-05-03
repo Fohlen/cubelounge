@@ -1,14 +1,11 @@
-	<div class="page-wrapper">
-		<div id="news" class="container">
-			<div id="three-column" class="container">
+	<div class="info">
 			<?php
-			echo '<div class="tbox">';
-			echo '<div class="title">';
-			echo 	'<h2>'.$data->title.'</h2>';
+			echo '<div class="article clearfix">';
+			echo '<h2>'.$data->title.'</h2>';
+			echo '<div class="column_100">';
+			echo '<p>'.html_entity_decode($data->description).'</p>';
 			echo '</div>';
-			echo '<p>'.$data->description.'</p>';
-			echo '<a href="'.$data->url.'" class="button">Read the full article</a> </div>';
+			echo '<a href="'.$data->url.'" class="button">Read the full article</a>';
+			echo '</div></article><br>';
 			?>
-			</div>
-		</div>
 	</div>
